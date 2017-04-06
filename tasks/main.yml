@@ -8,6 +8,8 @@
 - name: os-specific tasks
   include: "install-{{ansible_os_family}}.yml"
 
+- include: config.yml
+
 - name: restart logstash
   systemd:
     name: logstash
