@@ -1,0 +1,10 @@
+---
+- name: Config - Deploy pipelines
+  copy:
+    src: "{{ item }}"
+    dest: "/etc/logstash/conf.d/{{ item }}"
+    owner: root
+    group: root
+    mode: 0644
+  with_items: {{ logstash_pipelines }}
+  notify: restart logstash

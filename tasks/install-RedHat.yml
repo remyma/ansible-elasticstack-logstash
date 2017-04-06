@@ -1,0 +1,15 @@
+---
+- name: RedHat - Add Elasticsearch repository key
+  rpm_key:
+    key: "{{ logstash_gpgkey_url }}"
+    state: "present"
+
+- name: RedHat - Add logstash repository
+  template: src=logstash.repo dest=/etc/yum.repos.d/logstash-{{ logstash_major_version }}.repo
+
+- name: RedHat - Install logstash
+  yum: name=logstash state=present update_cache=yes
+  register: redhat_logstash_install_from_repo
+  until: '"failed" not in redhat_logstash_install_from_repo'
+  retries: 5
+  delay: 10

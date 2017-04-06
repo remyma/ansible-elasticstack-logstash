@@ -1,0 +1,35 @@
+---
+
+- name: Set state for java package to present
+  set_fact: java_state="present"
+
+- name: Override state for java package to latest if java update needed
+  set_fact: java_state="latest"
+  when: logstash_update_java == true
+
+- name: RedHat - Ensure Java is installed
+  yum:
+    name: "{{ java }}"
+    state: "{{ java_state }}"
+    update_cache: yes
+  when: ansible_os_family == 'RedHat'
+
+#- name: Debian - Refresh java repo
+#  apt: update_cache=yes
+#  changed_when: false
+#  when: ansible_os_family == 'Debian'
+
+- name: Debian - Ensure Java is installed
+  apt: name={{ java }} state={{ java_state }}
+  when: ansible_os_family == 'Debian'
+
+- name: Check java version
+  command: java -version 2>&1 | grep OpenJDK
+  register: open_jdk
+  changed_when: false
+
+#https://github.com/docker-library/openjdk/issues/19 - ensures tests pass due to java 8 broken certs
+- name: refresh the java ca-certificates
+  command: /var/lib/dpkg/info/ca-certificates-java.postinst configure
+  when: ansible_distribution == 'Ubuntu' and open_jdk.rc == 0
+  changed_when: false

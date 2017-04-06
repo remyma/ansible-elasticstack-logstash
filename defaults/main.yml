@@ -1,0 +1,10 @@
+---
+logstash_java_install: true
+logstash_update_java: false
+
+logstash_major_version: "5.x"
+
+logstash_gpgkey_url: "https://artifacts.elastic.co/GPG-KEY-elasticsearch"
+logstash_apt_url: "deb https://artifacts.elastic.co/packages/{{ logstash_major_version }}/apt stable main"
+
+logstash_pipelines: []

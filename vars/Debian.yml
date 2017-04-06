@@ -1,0 +1,2 @@
+---
+java: "{{ logstash_java | default('openjdk-8-jre-headless') }}"

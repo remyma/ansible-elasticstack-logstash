@@ -1,0 +1,17 @@
+---
+- name: Install prerequisite packages
+  apt: name="apt-transport-https" state="present"
+
+- name: Debian - Add Elasticsearch repository key
+  apt_key: url="{{ logstash_gpgkey_url }}" state=present
+
+- name: Debian - Add elasticsearch repository
+  apt_repository:
+    repo: "{{ logstash_apt_url }}"
+    state: "present"
+    filename: "elastic-{{ logstash_major_version }}"
+
+- name: Debian - Ensure logstash is installed
+  apt:
+    name: "logstash"
+    state: "present"

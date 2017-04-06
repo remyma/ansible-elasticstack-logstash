@@ -1,0 +1,16 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+docker:
+  containers:
+    - name: ansible-elasticstack-kibana-centos
+      image: centos
+      image_version: latest
+      privileged: True
+      command: '/sbin/init'
+      ansible_groups:
+        - centos
+verifier:
+  name: testinfra
