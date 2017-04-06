@@ -9,7 +9,7 @@ Install and configure logstash.
 ## Role Variables
 
 | Variable     | Default       | Description    |
-| ------------ | ------------- | -------------- | ----------------- | ------------- |
+| ------------ | ------------- | -------------- |
 | logstash_java_install | true | true to install java / false if java is already installed on you own |
 | logstash_update_java | false | if true, will update java |
 | logstash_major_version | 5.x | Major version of logstash to install |
