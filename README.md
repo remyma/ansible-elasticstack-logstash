@@ -28,20 +28,18 @@ Install and configure logstash.
 ### Deploy pipelines
 
 If you want to deploy pipelines on your logstash server, you can override ***logstash_pipelines*** variable.
-Place you pipelins .conf files in files directory 
-(in example below, pipelines config files to deploy are in files/logstash/pipelines directory)
+Place you pipelines .conf files under your ansible project in files/logstash/pipelines/ directory.
 
     - hosts: 
       roles:
         - { role: ansible-elasticstack-logstash }
       vars:
         logstash_pipelines:
-            - logstash/pipelines/my-pipeline.conf
-            - logstash/pipelines/second-pipeline.conf
+            - my-pipeline.conf
+            - second-pipeline.conf
     
 
-License
--------
+## License
 
 BSD
 
