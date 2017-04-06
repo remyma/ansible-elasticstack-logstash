@@ -1,38 +1,48 @@
-Role Name
-=========
+# Ansible Elasticstack Logstash
 
-A brief description of the role goes here.
+Install and configure logstash.
 
-Requirements
-------------
+## Requirements
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+* *java* : logstash needs java to run. This role can handle java install for you. But you can also install it on your own. 
 
-Role Variables
---------------
+## Role Variables
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+| Variable     | Default       | Description    |
+| ------------ | ------------- | -------------- | ----------------- | ------------- |
+| logstash_java_install | true | true to install java / false if java is already installed on you own |
+| logstash_update_java | false | if true, will update java |
+| logstash_major_version | 5.x | Major version of logstash to install |
+| logstash_pipelines | [] | List of logstash pipelines to deploy |
 
-Dependencies
-------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+## Example Playbook
 
-Example Playbook
-----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+### Basic install
 
-    - hosts: servers
+    - hosts: logstash-servers
       roles:
-         - { role: username.rolename, x: 42 }
+        - { role: ansible-elasticstack-logstash }
+
+### Deploy pipelines
+
+If you want to deploy pipelines on your logstash server, you can override ***logstash_pipelines*** variable.
+Place you pipelins .conf files in files directory 
+(in example below, pipelines config files to deploy are in files/logstash/pipelines directory)
+
+    - hosts: 
+      roles:
+        - { role: ansible-elasticstack-logstash }
+      vars:
+        logstash_pipelines:
+            - logstash/pipelines/my-pipeline.conf
+            - logstash/pipelines/second-pipeline.conf
+    
 
 License
 -------
 
 BSD
 
-Author Information
-------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).

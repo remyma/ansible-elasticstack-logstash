@@ -2,7 +2,7 @@ galaxy_info:
   author: Matthieu Rémy
   description: Install and configure logstash
 
-  license: license (GPLv2, CC-BY, etc)
+  license: license (BSD, MIT)
 
   min_ansible_version: 2.2.0
 
