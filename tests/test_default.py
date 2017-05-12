@@ -10,3 +10,4 @@ def test_hosts_file(File):
     assert f.exists
     assert f.user == 'root'
     assert f.group == 'root'
+

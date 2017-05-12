@@ -24,4 +24,5 @@ galaxy_info:
     - elk
     - pipeline
 
-dependencies: []
+dependencies:
+  - { role: ansible-elasticstack }
