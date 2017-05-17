@@ -1,2 +1,0 @@
----
-java: "{{ logstash_java | default('java-1.8.0-openjdk.x86_64') }}"

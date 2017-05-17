@@ -5,12 +5,13 @@ driver:
   name: docker
 docker:
   containers:
-    - name: ansible-elasticstack-kibana-centos
-      image: centos
+    - name: ansible-elasticstack-logstash
+      image: ubuntu
       image_version: latest
       privileged: True
       command: '/sbin/init'
+      cap_add: ['SYS_ADMIN', 'SETPCAP']
       ansible_groups:
-        - centos
+        - debian
 verifier:
   name: testinfra
