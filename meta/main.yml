@@ -25,5 +25,4 @@ galaxy_info:
     - pipeline
 
 dependencies:
-  - src: https://github.com/remyma/ansible-elasticstack.git
-    name: ansible-elasticstack
+  - name: remyma.elasticstack-root

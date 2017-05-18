@@ -12,6 +12,9 @@ Install and configure logstash.
 | ------------ | ------------- | -------------- |
 | logstash_pipelines | [] | List of logstash pipelines to deploy |
 
+## Dependencies
+
+* remyma.elasticstack-root
 
 ## Example Playbook
 
